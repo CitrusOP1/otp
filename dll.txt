@@ -1,0 +1,53 @@
+abc.c
+
+#include<stdio.h>
+#include<jni.h>
+#include "avcoe.h"
+
+
+JNIEXPORT jint JNICALL Java_avcoe_sum(JNIEnv *env, jobject thisObj, jint m, jint n)
+{
+	return(m+n);
+}
+JNIEXPORT jint JNICALL Java_avcoe_sub(JNIEnv *env, jobject thisObj, jint m, jint n)
+{
+	return(m-n);
+}
+
+
+.java
+
+class avcoe
+{
+	static
+	{
+		System.loadLibrary("abc");
+	}
+private native int sum(int a,int b);
+private native int sub(int a,int b);
+
+public static void main(String args[])
+{
+	 avcoe a=new avcoe();
+	int sum,sub;
+
+	sum=a.sum(10,20);
+	sub=a.sub(30,20);
+	system.out.println("sum is: "+sum);
+	system.out.println("sub is: "+sum);
+}
+}
+
+
+
+.h file
+
+
+cmd
+
+1)  javac avcoe.java
+2)  javac -h jni avcoe.java
+3)  gcc -fpic -I/home/sl2lab/jdk1.8/include -I/home/sl2lab/jdk1.8/include/linux -o libabc.so -shared abc.c
+4)  java -Djava.library.path=. avcoe
+
+

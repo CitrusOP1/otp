@@ -1,0 +1,79 @@
+
+package cpuscheduling;
+
+import java.util.*;
+
+
+public class worstfit {
+	
+	public static void main(String[]args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int p;int m;
+		
+		System.out.println("enter the processes");
+		p=sc.nextInt();
+		
+		System.out.println("enter the memory blocks");
+		m=sc.nextInt();
+		
+		int mem[]=new int[m];// size of avm array
+		int prc[]=new int [p];
+		
+		System.out.println("enter the process sizes");
+		
+		for(int i=0; i<p; i++)
+		{
+			prc[i]=sc.nextInt();
+			
+		}
+		System.out.println("enter the  memory size");
+		
+		for(int i=0; i<m; i++)
+		{
+			mem[i]=sc.nextInt();
+			
+		}
+		
+		
+	int flag=0,allocate,indx = 0;
+	for(int i=0;i<p;i++)
+	{	
+		flag=0;
+		for(int j=0;j<m;j++)
+		{
+			if(prc[i]<=mem[j])
+			{
+				allocate=mem[j];
+				indx=-1;
+				flag=1;
+				for(int k=j+1;k<m;k++)
+				{
+					if(mem[k]<allocate && mem[k]<prc[i])
+					{
+						allocate=mem[k];
+						indx=k;
+					}
+				}
+				if(indx!=-1)
+				{
+					System.out.println("Memory allocated to proccess p["+(i+1)+"] is: "+mem[indx]);
+					mem[indx]=0;
+					break;
+				}
+				else	
+				{
+					System.out.println("Memory allocated to proccess p["+(i+1)+"] is: "+mem[j]);
+					mem[j]=0;
+					break;
+				}
+			}
+		}
+		if(flag==0)
+		{
+			System.out.println("Memory not allocated to proccess p["+(i+1)+"]");
+		}
+	
+	}
+}
+}

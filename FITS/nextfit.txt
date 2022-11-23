@@ -1,0 +1,67 @@
+package avcoe;
+
+import java.util.*;
+
+public class nextfit {
+
+
+	public class worstfit {
+
+			public static void main(String[] args) {
+				
+				Scanner sc =new Scanner(System.in);
+				int p;
+				int m;
+				System.out.println("Enter no. of process ");
+				p=sc.nextInt();
+
+				System.out.println("Enter no. of memory blocks ");
+				m=sc.nextInt();
+				
+				int pro[] = new int[p];
+				int mem[] = new int[m];
+				
+				for(int i=0;i<p;i++) {
+					
+					System.out.println("Enter process "+i+" size : ");
+					pro[i] = sc.nextInt();
+					
+				}
+				for(int i=0;i<m;i++) {
+					
+					System.out.println("Enter block "+i+" size : ");
+					mem[i] = sc.nextInt();
+					
+				}
+			
+
+				int ptr=0,flag=0,flag1=0;
+				for(int i=0;i<p;i++)
+				{	
+					flag1=0;
+					flag=0;
+					for(int j=ptr;j<m;j++)
+					{
+						if(j==m-1 && flag1==0)
+						{
+							j=0;
+							flag1=1;
+							System.out.println("In if");
+						}
+						if(pro[i]<=mem[j])
+						{
+							flag=1;
+							ptr=j;
+							System.out.println("Allocated for p["+(i+1)+" is: "+mem[j]); 
+							mem[j]=0;
+							break;
+						}
+					}
+					if(flag==0)
+						System.out.println("Not allocated for p["+(i+1));
+				}
+				
+				
+		}
+	}
+}

@@ -1,0 +1,70 @@
+package pagereplacement;
+import java.util.*;
+public class fifo1 
+{
+	static int is_present(int n,int frame[],int f)
+	{
+	    int flag=0;
+	    for(int i=0;i<f;i++)
+	    {
+	        if(frame[i]==n)
+	        {
+	            flag=1;
+	            break;
+	        }
+	    }
+	    if(flag==1)
+	    return 1;
+	    else 
+	    return 0;
+	}
+	public static void main(String args[])
+	{
+		int s;
+		Scanner sc=new Scanner(System.in);
+		System.out.print("Enter number of pages:: ");
+		s=sc.nextInt();
+		int sequence[]=new int[s];
+		
+		for(int i=0;i<s;i++)
+	    {
+	        sequence[i]=sc.nextInt();
+	    }
+	    int f;
+	    System.out.print("Enter the number of frames: ");
+	    f=sc.nextInt();
+	    int faults=f,hits=0,p=0;
+	    int frame[]=new int[f];
+	    for(int i=0;i<f;i++)
+	    {
+	        frame[i]=sequence[i];
+	
+	    }
+	    for(int i=f;i<s;i++)
+	    {
+	        if(is_present(sequence[i],frame,f)==0)
+	        {
+	            if(p<f)
+	            {
+	                frame[p]=sequence[i];
+	                p++;
+	            }
+	            else
+	            {
+	                p=0;
+	                frame[p]=sequence[i];
+	                p++;
+	            }
+	            faults++;
+	
+	        }
+	        else 
+	        
+	            hits++;
+	    }
+	    System.out.println("faults: "+faults);
+	    System.out.println("Hits: "+hits);
+	}
+
+
+}

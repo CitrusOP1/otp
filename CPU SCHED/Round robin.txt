@@ -1,0 +1,68 @@
+package roundrobin;
+import java.util.*;
+public class RoundRobin {
+public static void main(String[] args)
+{
+	Scanner sc=new Scanner(System.in);
+	int p;
+	System.out.print("Enter number of processes: ");
+	p=sc.nextInt();
+	int bt[]=new int[p];
+	int qt;
+	int rbt[]=new int[p];
+	int tat[]=new int[p];
+	int wt[]=new int[p];
+	int ct[]=new int[p];
+	int tct=0;
+	System.out.println("Enter Brust Time: ");
+	for(int i=0;i<p;i++)
+	{
+		bt[i]=sc.nextInt();
+		rbt[i]=bt[i];
+		//tct+=bt[i];//tct=tct+bt[i];
+		ct[i]=0;
+	}
+	System.out.println("Enter Quantum Time: ");
+	qt=sc.nextInt();
+	int count=0,temp=0;
+
+	while(count!=p)
+	{
+		for(int i=0;i<p;i++)
+		{
+			if(rbt[i]!=0)
+			{
+				if(rbt[i]>qt)
+				{
+					rbt[i]=rbt[i]-qt; //rbt[i]-=qt;//
+					temp=temp+qt; //temp+=qt;//
+					ct[i]=temp;
+					//tct-=qt; //tct=tct-qt
+					
+				}
+				else if(rbt[i]>=0 && rbt[i]<=qt)
+				{
+					
+					temp=temp+rbt[i]; //temp+=rbt[i];//
+					ct[i]=temp;
+					rbt[i]=0;
+					count++;
+				}
+			}
+		}
+	}
+
+	
+	for(int i=0;i<p;i++)
+	{
+		tat[i]=ct[i];
+		wt[i]=tat[i]-bt[i];
+	}
+	System.out.println("Process"+"\t"+"BT"+"\t"+"CT"+"\t"+"TAT"+"\t"+"WT");
+	for(int i=0;i<p;i++)
+	{
+		System.out.println("p["+(i+1)+"]"+"\t"+bt[i]+"\t"+ct[i]+"\t"+tat[i]+"\t"+wt[i]);
+	}	
+	
+}
+}

@@ -1,0 +1,66 @@
+package practice;
+
+import java.util.*;
+
+public class FirstFit {
+
+	
+	public static void main (String []args) {
+		
+		Scanner sc = new Scanner (System.in );
+		int p;
+         int m;
+
+		System.out.println("Enter no. of processes  : ");
+		p=sc.nextInt();
+		System.out.println("enter no of memory ");
+		m=sc.nextInt();		
+		
+		int pr[] =new int[p];//
+		int mr[]= new int[m];
+		
+		
+		
+		System.out.println("enter the memory size");
+		
+		for(int i=0; i<m; i++)
+	   {
+			mr[i] = sc.nextInt();
+		}
+			
+		System.out.println("enter the process size");
+		
+		for(int i=0; i<p; i++)
+	   {
+			pr[i] = sc.nextInt();
+		}
+
+		int flag=0;
+		
+		for(int i=0; i< p; i++)//
+		{
+			flag=0;
+			for(int j=0; j< m; j++)//
+			{
+				if(pr[i] <= mr[j])
+				{
+					mr[j]=0;
+					
+					System.out.println("p["+(i+1)+"]"+"memory  allocated");	
+					flag=1;
+					break;
+				}
+				
+			}
+			if(flag==0)
+			{
+
+				System.out.println("p["+(i+1)+"]"+"memory not allocated");
+				
+				
+			}
+				
+		}
+		
+	}
+}

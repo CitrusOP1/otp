@@ -1,0 +1,4 @@
+1.javac TestJNI.java
+2.javah -jni  TestJNI
+3.gcc -fPIC -I/usr/lib/jvm/java-8-openjdk-amd64/include -I/usr/lib/jvm/java-8-openjdk-amd64/include/linux -o libcal.so -shared TestJNI.c
+4.java -Djava.library.path=. TestJNI
